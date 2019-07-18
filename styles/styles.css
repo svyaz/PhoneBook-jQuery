@@ -3,8 +3,58 @@
 }
 
 body {
-    background-color: #eee;
+    background-color: #f0f0f0;
     font-family: Tahoma, Arial, serif;
     font-size: 14px;
     color: #222;
+}
+
+.main {
+    width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 0;
+}
+
+.contacts-table {
+    margin: 5px 0 0 0;
+    width: 100%;
+    border: solid 1px #ccc;
+    border-radius: 3px;
+    border-spacing: 1px;
+}
+
+.contacts-table th {
+    background-color: #2188eb;
+    font-weight: normal;
+    font-size: 16px;
+    color: #eee;
+}
+
+.contacts-table th,
+.contacts-table td {
+    padding: 8px;
+}
+
+.contacts-table thead th,
+.contacts-table tfoot td,
+.contacts-table tbody td:first-child,
+.contacts-table tbody td:last-child {
+    text-align: center;
+}
+
+.contacts-table thead th {
+    width: 28%;
+}
+
+.contacts-table thead th:first-child {
+    width: 8%;
+}
+
+.contacts-table tbody tr:nth-child(odd) {
+    background-color: #e5e5e5;
+}
+
+.contacts-table tbody tr:nth-child(even) {
+    background-color: #ddd;
 }
