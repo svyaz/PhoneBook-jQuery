@@ -1,0 +1,10 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #eee;
+    font-family: Tahoma, Arial, serif;
+    font-size: 14px;
+    color: #222;
+}
