@@ -58,3 +58,7 @@ body {
 .contacts-table tbody tr:nth-child(even) {
     background-color: #ddd;
 }
+
+#add-dialog {
+    /*visibility: hidden;*/
+}

@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <title>Phone Book jQuery</title>
     <link rel="stylesheet" href="styles/normalize.css">
-    <link rel="stylesheet" href="styles/jquery-ui.css">
+    <link rel="stylesheet" href="node_modules/jquery-ui-dist/jquery-ui.min.css">
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
 
 <div class="main">
-    <button id="add-dialog" class="ui-button ui-corner-all ui-widget">
-        <span class="ui-icon ui-icon-newwin"></span> Добавить контакт
+    <button id="add-button" class="ui-button ui-corner-all ui-widget">
+        <span class="ui-icon ui-icon-plus"></span> Добавить контакт
     </button>
     <table class="contacts-table">
         <thead>
@@ -53,9 +53,19 @@
         </tfoot>
     </table>
 </div>
+<div id="add-dialog" hidden>
+    <form>
+        Имя <input type="text">
+    </form>
+</div>
 
-<script src="js/jquery/jquery-3.4.1.min.js"></script>
-<script src="js/jquery/jquery-ui.min.js"></script>
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+<!-- ... -->
+<script src="js/contact-class.js"></script>
+<script src="js/contacts-list-class.js"></script>
+<script src="js/presenter-class.js"></script>
+<script src="js/view-class.js"></script>
 <!-- ... -->
 <script src="js/phone-book.js"></script>
 </body>

@@ -1,0 +1,24 @@
+{
+  "name": "phonebook-jquery",
+  "version": "1.0.0",
+  "description": "Simple phonebook with jquery",
+  "main": "index.js",
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "jquery-ui-dist": "^1.12.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svyaz/PhoneBook-jQuery.git"
+  },
+  "author": "Max Kuzhelev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/svyaz/PhoneBook-jQuery/issues"
+  },
+  "homepage": "https://github.com/svyaz/PhoneBook-jQuery#readme"
+}
