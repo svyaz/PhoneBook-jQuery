@@ -8,11 +8,11 @@ function ContactClass(_firstName, _lastName, _phoneNumber) {
     var phoneNumber;
 
     function init() {
-        log("ContactClass.init(): " + id + ", " + firstName + ", " + lastName + ", " + phoneNumber);
         id = (new Date()).getTime().toString();
         firstName = _firstName;
         lastName = _lastName;
         phoneNumber = _phoneNumber;
+        log("ContactClass.init(): " + id + ", " + firstName + ", " + lastName + ", " + phoneNumber);
     }
 
     var publicMembers = {

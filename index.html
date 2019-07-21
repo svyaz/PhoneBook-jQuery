@@ -24,38 +24,27 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
+        <!-- Table row template -->
+        <!--<tr>
             <td>1</td>
             <td>Василий</td>
             <td>Пупкин</td>
             <td>+7-913-123-4567</td>
-            <td>x</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Василий</td>
-            <td>Пупкин</td>
-            <td>+7-913-123-4567</td>
-            <td>x</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Василий</td>
-            <td>Пупкин</td>
-            <td>+7-913-123-4567</td>
-            <td>x</td>
-        </tr>
+            <td><a href="#" title="Удалить"><span class="ui-icon ui-icon-trash"></span></a></td>
+        </tr>-->
         </tbody>
         <tfoot>
         <tr>
-            <td colspan="5">Пока нет ни одного контакта. Добавить?</td>
+            <td colspan="5">Пока нет ни одного контакта. <a href="#" id="add-link" title="Добавить новый контакт">Добавить!</a></td>
         </tr>
         </tfoot>
     </table>
 </div>
 <div id="add-dialog" hidden>
-    <form>
-        Имя <input type="text">
+    <form id="add-form">
+        <label>Имя:<input type="text" id="input-first-name" placeholder="Имя"></label>
+        <label>Фамилия:<input type="text" id="input-last-name" placeholder="Фамилия"></label>
+        <label>Телефон:<input type="text" id="input-phone-number" placeholder="Номер телефона"></label>
     </form>
 </div>
 
@@ -72,12 +61,10 @@
 </html>
 
 <!--TODO:
-1. Столбцы фиксированные по ширине.
-2. Если нет ни одного контакта, показывать tfoot с кнопкой "Добавить?"
 3. Стили сделать как в jQuery UI
 4. Кнопку "х" - jQuery UI
-5. Форма добавления и все диалоги - тоже jQuery UI.
-6. Перевычисление номеров строк при удалении и при добавлении.
+5. Все диалоги - тоже jQuery UI.
+6. Перевычисление номеров строк при удалении.
 7. При добавлении - валидация что все поля заполнены.
 8. Незаполненные поля нужно как-то выделить визуально.
    И нужно добавить на страницу сообщение что что-то не заполнено.

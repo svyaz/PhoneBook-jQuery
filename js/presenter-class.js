@@ -12,7 +12,21 @@ function PresenterClass(_model, _view) {
     }
 
     var publicMembers = {
+        addListenerToView: function () {
+            view.addListener(this);
+        },
 
+        addListenerToModel: function () {
+            model.addListener(this);
+        },
+
+        addItem: function (newItem) {
+            model.addItem(newItem);
+        },
+
+        itemAdded: function (item) {
+            view.drawNewItem(item);
+        }
     };
 
     init();

@@ -59,6 +59,7 @@ body {
     background-color: #ddd;
 }
 
-#add-dialog {
-    /*visibility: hidden;*/
+#add-dialog input {
+    width: 100%;
+    margin: 3px 0 8px 0;
 }
