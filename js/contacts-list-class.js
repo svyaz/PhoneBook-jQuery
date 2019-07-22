@@ -17,6 +17,12 @@ function ContactsListClass() {
         });
     }
 
+    function notifyItemDeletedState(itemId, isDeleted) {
+        listeners.forEach(function (listener) {
+            listener.itemDeletedState(itemId, isDeleted);
+        })
+    }
+
     var publicMembers = {
         size: function () {
             return list.length;
@@ -29,15 +35,17 @@ function ContactsListClass() {
             notifyItemAdded(list[list.length - 1]);
         },
 
-        removeItem: function (id) {
-            return list.some(function (item, index) {
-                if (item.getId() === id) {
+        deleteItem: function (itemId) {
+            var isDeleted = list.some(function (item, index) {
+                if (item.getId() === itemId) {
                     var ret = list.splice(index, 1);
                     console.log("list.splice return = " + ret);
                     return true;
                 }
                 return false;
             });
+
+            notifyItemDeletedState(itemId, isDeleted);
         },
 
         addListener: function (object) {

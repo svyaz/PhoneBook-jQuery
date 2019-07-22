@@ -24,8 +24,20 @@ function PresenterClass(_model, _view) {
             model.addItem(newItem);
         },
 
+        deleteItem: function (itemId) {
+            model.deleteItem(itemId);
+        },
+
         itemAdded: function (item) {
             view.drawNewItem(item);
+        },
+
+        itemDeletedState: function (itemId, isDeleted) {
+            if(isDeleted) {
+                view.removeDeletedItem(itemId)
+            } else {
+                view.showErrorMessage("MSG_DELETION_ERROR");
+            }
         }
     };
 
