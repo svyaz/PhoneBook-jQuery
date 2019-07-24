@@ -53,7 +53,10 @@
     </form>
 </div>
 <div id="delete-dialog" hidden>
-    <span>Удалить контакт насовсем?</span>
+    <span class="ui-icon ui-icon-alert"></span> <span>Удалить контакт насовсем?</span>
+</div>
+<div id="error-dialog" hidden>
+    <span class="ui-icon ui-icon-alert"></span> <span id="error-message"></span>
 </div>
 
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
@@ -69,14 +72,6 @@
 </html>
 
 <!--TODO:
-1. Красивый диалог в showErrorMessage.
-2. view.showErrorMessage("MSG_DELETION_ERROR");
-3. Стили сделать как в jQuery UI
-4. Икону варнинга на окно подтверждения при удалении.
-5. Все диалоги - тоже jQuery UI.
-9. Если валидация прошла успешно, то все поля очищаются, а в таблицу в конец добавляется новая строка с этими данными.
-   При этом должны сброситься стили и сообщения валидации.
-
 Усложнения по задаче:
 11. Валидация, что контакт с таким номером уже добавлен. В этом случае выводить сообщение валидации,
     а строку в таблицу не добавлять.

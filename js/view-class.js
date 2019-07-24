@@ -3,6 +3,10 @@
  */
 function ViewClass() {
 
+    var messages = {
+        MSG_DELETION_ERROR: "Не получилось удалить!"
+    };
+
     var listeners = [];
 
     function init() {
@@ -144,8 +148,24 @@ function ViewClass() {
             setFooterVisibility();
         },
 
-        showErrorMessage: function (message) {
-            alert(message);
+        showErrorMessage: function (messageId) {
+            $("#error-dialog span#error-message").text(messages[messageId]);
+
+            $("#error-dialog").dialog({
+                autoOpen: false,
+                modal: true,
+                draggable: true,
+                width: 300,
+                title: "Ошибка",
+                buttons: [
+                    {
+                        text: "OK",
+                        click: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            }).dialog("open");
         }
     };
 
