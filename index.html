@@ -45,6 +45,11 @@
         <label>Имя:<input type="text" id="input-first-name" placeholder="Имя"></label>
         <label>Фамилия:<input type="text" id="input-last-name" placeholder="Фамилия"></label>
         <label>Телефон:<input type="text" id="input-phone-number" placeholder="Номер телефона"></label>
+        <div class="ui-widget" id="empty-label" hidden>
+            <div class="ui-state-error ui-corner-all">
+                <span class="ui-icon ui-icon-alert"></span>Заполните все поля!
+            </div>
+        </div>
     </form>
 </div>
 <div id="delete-dialog" hidden>
@@ -69,8 +74,6 @@
 3. Стили сделать как в jQuery UI
 4. Икону варнинга на окно подтверждения при удалении.
 5. Все диалоги - тоже jQuery UI.
-7. При добавлении - валидация что все поля заполнены.
-8. Незаполненные поля нужно как-то выделить визуально. И нужно добавить на страницу сообщение что что-то не заполнено.
 9. Если валидация прошла успешно, то все поля очищаются, а в таблицу в конец добавляется новая строка с этими данными.
    При этом должны сброситься стили и сообщения валидации.
 

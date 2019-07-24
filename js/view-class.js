@@ -31,7 +31,7 @@ function ViewClass() {
         if ($(".contacts-table tbody tr").length) {
             $(".contacts-table tfoot").fadeOut(); // hide()
         } else {
-           $(".contacts-table tfoot").fadeIn();  // show()
+            $(".contacts-table tfoot").fadeIn();  // show()
         }
     }
 
@@ -49,12 +49,32 @@ function ViewClass() {
                 {
                     text: "Добавить",
                     click: function () {
-                        var newContact = {
+                        var allFilled = true;
+                        var fields = $("#add-form input");
+                        var emptyLabel = $("#empty-label");
+
+                        fields.each(function (index) {
+                            if ($(this).val().length === 0) {
+                                $(this).addClass("empty-field");
+                                allFilled = false;
+                            } else {
+                                $(this).removeClass("empty-field");
+                            }
+                        });
+
+                        if (!allFilled) { /* Не всё заполнено */
+                            emptyLabel.fadeIn();
+                            return;
+                        }
+
+                        notifyAddItemClicked({
                             firstName: $("#input-first-name").val(),
                             lastName: $("#input-last-name").val(),
                             phoneNumber: $("#input-phone-number").val()
-                        };
-                        notifyAddItemClicked(newContact);
+                        });
+
+                        fields.val("");
+                        emptyLabel.hide();
                         $(this).dialog("close");
                     }
                 },
@@ -117,7 +137,7 @@ function ViewClass() {
             setFooterVisibility();
         },
 
-        removeDeletedItem: function(itemId) {
+        removeDeletedItem: function (itemId) {
             log("ViewClass.removeDeletedItem " + itemId);
             $(".contacts-table tbody tr:has(a#" + itemId + ")").remove();
             drawRowsNumbers();
