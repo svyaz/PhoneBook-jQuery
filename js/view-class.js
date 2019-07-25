@@ -4,7 +4,8 @@
 function ViewClass() {
 
     var messages = {
-        MSG_DELETION_ERROR: "Не получилось удалить!"
+        MSG_DELETION_ERROR: "Не получилось удалить!",
+        MSG_CONTACT_ALREADY_EXISTS: "Контакт с таким номером телефона уже есть!"
     };
 
     var listeners = [];

@@ -29,7 +29,11 @@ function PresenterClass(_model, _view) {
         },
 
         itemAdded: function (item) {
-            view.drawNewItem(item);
+            if(item === null) {
+                view.showErrorMessage("MSG_CONTACT_ALREADY_EXISTS");
+            } else {
+                view.drawNewItem(item);
+            }
         },
 
         itemDeletedState: function (itemId, isDeleted) {

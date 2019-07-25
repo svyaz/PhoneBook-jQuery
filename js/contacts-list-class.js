@@ -29,17 +29,23 @@ function ContactsListClass() {
         },
 
         addItem: function (newItem) {
-            var contact = new ContactClass(newItem.firstName, newItem.lastName, newItem.phoneNumber);
-            list.push(contact);
-            log("ContactsListClass.addItem(), new list size = " + list.length);
-            notifyItemAdded(list[list.length - 1]);
+            var isFound = list.some(function (item) {
+                return item.getPhoneNumber() === newItem.phoneNumber;
+            });
+
+            var contact = null;
+            if (!isFound) {
+                contact = new ContactClass(newItem.firstName, newItem.lastName, newItem.phoneNumber);
+                list.push(contact);
+            }
+
+            notifyItemAdded(contact);
         },
 
         deleteItem: function (itemId) {
             var isDeleted = list.some(function (item, index) {
                 if (item.getId() === itemId) {
-                    var ret = list.splice(index, 1);
-                    console.log("list.splice return = " + ret);
+                    list.splice(index, 1);
                     return true;
                 }
                 return false;
