@@ -8,7 +8,6 @@ function PresenterClass(_model, _view) {
     function init() {
         model = _model;
         view = _view;
-        log("PresenterClass.init()");
     }
 
     var publicMembers = {

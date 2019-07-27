@@ -12,7 +12,6 @@ function ContactClass(_firstName, _lastName, _phoneNumber) {
         firstName = _firstName;
         lastName = _lastName;
         phoneNumber = _phoneNumber;
-        log("ContactClass.init(): " + id + ", " + firstName + ", " + lastName + ", " + phoneNumber);
     }
 
     var publicMembers = {

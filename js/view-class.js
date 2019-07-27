@@ -5,24 +5,25 @@ function ViewClass() {
 
     var messages = {
         MSG_DELETION_ERROR: "Не получилось удалить!",
-        MSG_CONTACT_ALREADY_EXISTS: "Контакт с таким номером телефона уже есть!"
+        MSG_CONTACT_ALREADY_EXISTS: "Контакт с таким номером телефона уже есть!",
+        MSG_SELECT_BEFORE_DELETION: "Сначала надо выбрать некоторые записи!"
     };
 
-    var listeners = [];
+    var listeners;
 
     var selectAllCheckbox = $("#check-head");
 
     function init() {
-        log("ViewClass.init()");
+        listeners = [];
     }
 
-    function notifyAddItemClicked(newItem) {
+    function notifyAddItem(newItem) {
         listeners.forEach(function (listener) {
             listener.addItem(newItem);
         });
     }
 
-    function notifyDeleteItemClicked(itemId) {
+    function notifyDeleteItem(itemId) {
         listeners.forEach(function (listener) {
             listener.deleteItem(itemId);
         });
@@ -42,22 +43,21 @@ function ViewClass() {
         }
     }
 
-    selectAllCheckbox.change(function (event) {
-        log("checked #check-head: " + event.target.checked);
-        $(".contacts-table tbody input:checkbox").prop("checked", event.target.checked);
-    });
-
     function rowCheckboxChanged() {
-        log("checked: " + this.checked);
         if (!this.checked) {
             selectAllCheckbox.prop("checked", false);
         }
     }
 
+    selectAllCheckbox.change(function (event) {
+        var checkboxes = $(".contacts-table tbody input:checkbox");
+        if (checkboxes.length > 0) {
+            checkboxes.prop("checked", event.target.checked);
+        }
+    });
+
     $("#add-button, #add-link").click(function (event) {
         event.preventDefault();
-        log("ViewClass.click()");
-
         $("#add-dialog").dialog({
             autoOpen: false,
             modal: true,
@@ -86,7 +86,7 @@ function ViewClass() {
                             return;
                         }
 
-                        notifyAddItemClicked({
+                        notifyAddItem({
                             firstName: $("#input-first-name").val(),
                             lastName: $("#input-last-name").val(),
                             phoneNumber: $("#input-phone-number").val()
@@ -107,20 +107,54 @@ function ViewClass() {
         }).dialog("open");
     });
 
+    $("#delete-button").click(function (event) {
+        event.preventDefault();
+        var selectedItems = $(".contacts-table tbody input:checked");
+
+        if (selectedItems.length > 0) {
+            $("#delete-dialog").dialog({
+                autoOpen: false,
+                modal: true,
+                draggable: true,
+                width: 300,
+                title: "Удалить выбранные контакты?",
+                buttons: [
+                    {
+                        text: "Удалить",
+                        click: function () {
+                            $(this).dialog("close");
+                            selectedItems.each(function () {
+                                var id = this.id.replace("check-", "");
+                                notifyDeleteItem(id);
+                            });
+                            selectAllCheckbox.prop("checked", false);
+                        }
+                    },
+                    {
+                        text: "Отмена",
+                        click: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            }).dialog("open");
+        } else {
+            publicMembers.showErrorMessage("MSG_SELECT_BEFORE_DELETION");
+        }
+
+    });
+
     var publicMembers = {
         addListener: function (object) {
-            log("ViewClass.addListener " + object);
             listeners.push(object);
         },
 
         drawNewItem: function (item) {
-            log("ViewClass.drawNewItem " + item);
             var tableRow = $("<tr></tr>");
 
             var deleteLink = $("<a href='#' title='Удалить' class='ui-icon ui-icon-trash' id='del-" + item.getId() + "'></a>");
             deleteLink.click(item.getId(), function (event) {
                 event.preventDefault();
-                log("delete id: " + event.data);
 
                 $("#delete-dialog").dialog({
                     autoOpen: false,
@@ -132,7 +166,7 @@ function ViewClass() {
                         {
                             text: "Удалить",
                             click: function () {
-                                notifyDeleteItemClicked(event.data);
+                                notifyDeleteItem(event.data);
                                 $(this).dialog("close");
                             }
                         },
@@ -161,7 +195,6 @@ function ViewClass() {
         },
 
         removeDeletedItem: function (itemId) {
-            log("ViewClass.removeDeletedItem " + itemId);
             $(".contacts-table tbody tr:has(a#del-" + itemId + ")").remove();
             drawRowsNumbers();
             setFooterVisibility();

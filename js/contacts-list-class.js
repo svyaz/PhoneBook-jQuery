@@ -3,15 +3,14 @@
  */
 function ContactsListClass() {
     var list;
-    var listeners = [];
+    var listeners;
 
     function init() {
         list = [];
-        log("ContactsListClass.init()");
+        listeners = [];
     }
 
     function notifyItemAdded(contact) {
-        log("ContactsListClass.notifyItemAdded, contact = " + contact);
         listeners.forEach(function (listener) {
             listener.itemAdded(contact);
         });
@@ -55,7 +54,6 @@ function ContactsListClass() {
         },
 
         addListener: function (object) {
-            log("ContactsListClass.addListener " + object);
             listeners.push(object);
         }
     };

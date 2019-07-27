@@ -13,6 +13,9 @@
     <button id="add-button" class="ui-button ui-corner-all ui-widget">
         <span class="ui-icon ui-icon-plus"></span> Добавить контакт
     </button>
+    <button id="delete-button" class="ui-button ui-corner-all ui-widget">
+        <span class="ui-icon ui-icon-trash"></span> Удалить выделенные
+    </button>
     <table class="contacts-table">
         <thead>
         <tr>
@@ -55,7 +58,7 @@
     </form>
 </div>
 <div id="delete-dialog" hidden>
-    <span class="ui-icon ui-icon-alert"></span> <span>Удалить контакт насовсем?</span>
+    <span class="ui-icon ui-icon-alert"></span> <span>Вы точно уверены?</span>
 </div>
 <div id="error-dialog" hidden>
     <span class="ui-icon ui-icon-alert"></span> <span id="error-message"></span>
@@ -63,20 +66,11 @@
 
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
-<!-- ... -->
 <script src="js/contact-class.js"></script>
 <script src="js/contacts-list-class.js"></script>
 <script src="js/presenter-class.js"></script>
 <script src="js/view-class.js"></script>
-<!-- ... -->
 <script src="js/phone-book.js"></script>
+
 </body>
 </html>
-
-<!--TODO:
-Усложнения по задаче:
-12. Сделать слева дополнительный столбец с чек-боксами для выбора строк.  При нажатии на кнопку удаления,
-    удалять все выбранные строки.
-14. Над таблицей сделать фильтр – текстовое поле, в которое пользователь может вводить текст.
-    И рядом две кнопки - одна применяет фильтр, вторая сбрасывает.
--->
