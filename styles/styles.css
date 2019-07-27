@@ -10,7 +10,7 @@ body {
 }
 
 .main {
-    width: 800px;
+    width: 860px;
     margin: 0 auto;
     padding: 20px;
     border: 0;
@@ -25,10 +25,9 @@ body {
 }
 
 .contacts-table th {
-    background-color: #2188eb;
+    background-color: #87cefa;
     font-weight: normal;
     font-size: 16px;
-    color: #eee;
 }
 
 .contacts-table th,
@@ -47,8 +46,9 @@ body {
     width: 28%;
 }
 
-.contacts-table thead th:first-child {
-    width: 8%;
+.contacts-table thead th:first-child,
+.contacts-table thead th:nth-child(2) {
+    width: 5%;
 }
 
 .contacts-table tbody tr:nth-child(odd) {
@@ -66,4 +66,8 @@ body {
 
 .empty-field {
     background-color: #fddfdf;
+}
+
+.contacts-table input[type="checkbox"] {
+
 }

@@ -10,6 +10,8 @@ function ViewClass() {
 
     var listeners = [];
 
+    var selectAllCheckbox = $("#check-head");
+
     function init() {
         log("ViewClass.init()");
     }
@@ -27,7 +29,7 @@ function ViewClass() {
     }
 
     function drawRowsNumbers() {
-        $(".contacts-table tbody tr > td:first-child").each(function (index) {
+        $(".contacts-table tbody tr > td:nth-child(2)").each(function (index) {
             $(this).html(index + 1);
         });
     }
@@ -37,6 +39,18 @@ function ViewClass() {
             $(".contacts-table tfoot").fadeOut(); // hide()
         } else {
             $(".contacts-table tfoot").fadeIn();  // show()
+        }
+    }
+
+    selectAllCheckbox.change(function (event) {
+        log("checked #check-head: " + event.target.checked);
+        $(".contacts-table tbody input:checkbox").prop("checked", event.target.checked);
+    });
+
+    function rowCheckboxChanged() {
+        log("checked: " + this.checked);
+        if (!this.checked) {
+            selectAllCheckbox.prop("checked", false);
         }
     }
 
@@ -103,7 +117,7 @@ function ViewClass() {
             log("ViewClass.drawNewItem " + item);
             var tableRow = $("<tr></tr>");
 
-            var deleteLink = $("<a href='#' title='Удалить' class='ui-icon ui-icon-trash' id='" + item.getId() + "'></a>");
+            var deleteLink = $("<a href='#' title='Удалить' class='ui-icon ui-icon-trash' id='del-" + item.getId() + "'></a>");
             deleteLink.click(item.getId(), function (event) {
                 event.preventDefault();
                 log("delete id: " + event.data);
@@ -132,19 +146,23 @@ function ViewClass() {
                 }).dialog("open");
             });
 
+            $("<td><label><input type='checkbox' id='check-" + item.getId() + "'></label></td>").appendTo(tableRow);
             $("<td></td>").appendTo(tableRow);
             $("<td></td>").text(item.getFirstName()).appendTo(tableRow);
             $("<td></td>").text(item.getLastName()).appendTo(tableRow);
             $("<td></td>").text(item.getPhoneNumber()).appendTo(tableRow);
             $("<td></td>").append(deleteLink).appendTo(tableRow);
             tableRow.appendTo(".contacts-table tbody");
+
+            $("#check-" + item.getId()).change(rowCheckboxChanged);
+
             drawRowsNumbers();
             setFooterVisibility();
         },
 
         removeDeletedItem: function (itemId) {
             log("ViewClass.removeDeletedItem " + itemId);
-            $(".contacts-table tbody tr:has(a#" + itemId + ")").remove();
+            $(".contacts-table tbody tr:has(a#del-" + itemId + ")").remove();
             drawRowsNumbers();
             setFooterVisibility();
         },
